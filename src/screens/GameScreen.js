@@ -9,8 +9,8 @@ const GameScreen = ({ route, navigation }) => {
   const [points, setPoints] = useState(0);
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState('question');
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const [options, setOptions] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState({});
+  const [options, setOptions] = useState([]);
   const [chosenOption, setChosenOption] = useState(-1);
   const { username } = route.params;
 
@@ -21,7 +21,7 @@ const GameScreen = ({ route, navigation }) => {
   }
 
   const confirmTry = () => {
-    if(selectedCountry === options[chosenOption]){
+    if(selectedCountry.name === options[chosenOption].name){
       setPoints((p) => p+1 )
       setStatus('hit')
     }
@@ -108,7 +108,7 @@ const GameScreen = ({ route, navigation }) => {
     </SafeAreaView>
     )
 
-  if(selectedCountry == '') return(<Text>Carregando ...</Text>) 
+  if(Object.keys(selectedCountry).length == 0) return(<Text>Carregando ...</Text>) 
   else 
     return (
     <SafeAreaView style={styles.container}>
@@ -127,7 +127,7 @@ const GameScreen = ({ route, navigation }) => {
         <Image 
           style={styles.flag}
           source={{
-            uri: `https://countryflagsapi.com/png/${selectedCountry}`
+            uri: `https://flagsapi.com/${selectedCountry.code}/shiny/64.png`
           }}
           resizeMode="contain"
         />
@@ -140,7 +140,7 @@ const GameScreen = ({ route, navigation }) => {
               onPress={() => setChosenOption(idx)}
             >
               <View style={[styles.buttonOption, idx === chosenOption ? styles.buttonOptionSelected : {}]}>
-                <Text>{option}</Text>
+                <Text>{option.name}</Text>
               </View>
             </TouchableOpacity>
           )
