@@ -72,7 +72,7 @@ Substitua `CAMINHO/PARA/` com o caminho correto para o arquivo.
 
 ## API para registro da pontuação
 
-O webservice para registro das pontuações pode ser encontrado no endereço [`http://200.236.3.126:3000/`](http://200.236.3.126:3000/).
+O webservice para registro das pontuações pode ser encontrado no endereço [`http://200.236.3.126:9999/`](http://200.236.3.126:9999/).
 
 Cada aluno da disciplina possui seus próprios endpoints, identificados a partir de seu GRR.
 Os seguintes endpoints estão disponíveis:
