@@ -17,7 +17,7 @@ export const FlagQuestion = ({ username, countryCode }: FlagQuestionProps) => {
         source={{
           uri: `https://flagcdn.com/w320/${countryCode.toLowerCase()}.png`
         }}
-        contentMode="contain"
+          contentFit="contain"
       />
     </View>
   );
@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   flag: {
-    width: 180,
-    height: 180,
+    width: 300,
+    height: 300,
   },
   question: {
     fontWeight: 'bold',
