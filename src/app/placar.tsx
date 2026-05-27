@@ -20,7 +20,7 @@ const Placar = () => {
 
   const fetchScore = async () => {
     
-    const url = isScore ? 'http://localhost:3000/scores' : 'http://localhost:3000/timedscores';
+    const url = 'http://localhost:3000/scores';
 
     try {
       const response = await fetch(url);
@@ -30,13 +30,8 @@ const Placar = () => {
       }
       const responseJson = await response.json();
       console.log('Sucesso:', responseJson);
-
-      if(isScore){
         setScore(responseJson);
-      }else{
-        setScoreTimed(responseJson)
-      }
-      
+    
     } catch (error) {
       console.error('Erro ao scores :', error);
     }
@@ -63,7 +58,7 @@ const Placar = () => {
 
   useEffect(() => {
     fetchScore();
-    fetchTimedScore();
+    //fetchTimedScore();
   }, []);
 
 
@@ -92,18 +87,18 @@ const Placar = () => {
         </View>
       }
 
-      {!isScore &&
+      {/* {!isScore &&
         <View>
           <Text>timed score </Text>
           <FlatList
-            data={scores}
+            data={scoresTimed}
             renderItem={({ item }) => <RenderScoreItem item={item} />}
             keyExtractor={(item, index) => item.id.toString()}
             contentContainerStyle={styles.listContainer}
           />
         </View>
         
-      }
+      } */}
 
 
     </SafeAreaView>
