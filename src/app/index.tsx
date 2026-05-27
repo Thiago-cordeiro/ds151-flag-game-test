@@ -27,6 +27,17 @@ const HomeScreen = () => {
             });
           }}
         />
+
+        <Button 
+          title="Placar"
+          color="rgb(0, 96, 170)"
+          onPress={() => {
+            router.push({
+              pathname: '/placar',
+              params: { username: username }
+            });
+          }}
+        />
       </View>
     </View>
   );
