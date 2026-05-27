@@ -17,7 +17,25 @@ const Placar = () => {
   const [scores, setScore] = useState<Score[]>([]);
 
   const fetchScore = async () => {
-    const url = 'http://localhost:3000/scores'
+    
+    const url = isScore ? 'http://localhost:3000/scores' : 'http://localhost:3000/timedscores';
+
+    try {
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error("Erro ao buscar dados. Verifique o nome da cidade.");
+      }
+      const responseJson = await response.json();
+      console.log('Sucesso:', responseJson);
+      setScore(responseJson);
+    } catch (error) {
+      console.error('Erro ao scores :', error);
+    }
+  };
+
+  const fetchTimedScore = async () => {
+    const url = 'http://localhost:3000/timedscores'
 
     try {
       const response = await fetch(url);

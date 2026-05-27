@@ -29,6 +29,18 @@ const HomeScreen = () => {
         />
 
         <Button 
+          title="Iniciar com Tempo"
+          color="#0a0"
+          disabled={username === ''}
+          onPress={() => {
+            router.push({
+              pathname: '/game-timed',
+              params: { username: username }
+            });
+          }}
+        />
+
+        <Button 
           title="Placar"
           color="rgb(0, 96, 170)"
           onPress={() => {

@@ -12,6 +12,8 @@ interface FeedbackScreenProps {
   onContinue?: () => void;
   onRestart?: () => void;
   onQuit?: () => void;
+  typeGame?: string;
+
 }
 
 export const FeedbackScreen = ({
@@ -21,11 +23,12 @@ export const FeedbackScreen = ({
   onContinue,
   onRestart,
   onQuit,
+  typeGame
 }: FeedbackScreenProps) => {
 
   async function salvaDados (username?: string, points?: number, type?: number) {
     console.log(username, points);
-    const url = 'http://localhost:3000/scores';
+    const url = typeGame ? 'http://localhost:3000/scores' : 'http://localhost:3000/timedscores';
     const payload = { nome: username, pontos: points };
 
     try {
