@@ -1,0 +1,26 @@
+{
+  "scores": [
+    {
+      "nome": "thiago",
+      "pontos": 4,
+      "id": "_KyjiIElMRE"
+    },
+    {
+      "nome": "thiago",
+      "pontos": 3,
+      "id": "sktwkN-rJaw"
+    },
+    {
+      "nome": "thiago",
+      "pontos": 1,
+      "id": "0B-1lD8iLSE"
+    },
+    {
+      "nome": "thiago",
+      "pontos": 5,
+      "id": "Ej1C28HWkIA"
+    }
+  ],
+  "timedscores": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -20,8 +20,35 @@ export const FeedbackScreen = ({
   points,
   onContinue,
   onRestart,
-  onQuit
+  onQuit,
 }: FeedbackScreenProps) => {
+
+  async function salvaDados (username?: string, points?: number, type?: number) {
+    console.log(username, points);
+    const url = 'http://localhost:3000/scores';
+    const payload = { nome: username, pontos: points };
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao enviar dados');
+      }
+      const respostaJSON = await response.json();
+      console.log('Sucesso:', respostaJSON);
+    } catch (error) {
+      console.error('Erro:', error);
+    }finally{
+      if(type == 1){ onRestart();} else {onQuit();}
+    }
+  }
+
   if (status === 'end') {
     return (
       <SafeAreaView style={[styles.resultContainer, styles.endContainer]}>
@@ -32,10 +59,10 @@ export const FeedbackScreen = ({
         </View>
         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
           <View style={{ paddingHorizontal: 10 }}>
-            <Button title="Recomeçar" onPress={onRestart} />
+            <Button title="Recomeçar" onPress={() => {salvaDados(username, points, 1), onRestart}} />
           </View>
           <View style={{ paddingHorizontal: 10 }}>
-            <Button title="Encerrar" color="red" onPress={onQuit} />
+            <Button title="Encerrar" color="red" onPress={() => {salvaDados(username, points, 2), onQuit}} />
           </View>
         </View>
       </SafeAreaView>
